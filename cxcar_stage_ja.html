@@ -1,0 +1,94 @@
+<!doctype html>
+<!--The staging tool of cervix carcinoma in Japanese-->
+<!--reference documents : FIGO staging of cancer of the cervix uteri (2018)-->
+<html><head>
+<meta charset="utf-8">
+    <script type="text/javascript">
+	<!--  
+	function c_staging(){
+		
+		if(out_pelvis.checked == true){
+			return "ⅣB"
+		} else if(bl_spread.checked == true || rec_spread.checked == true){
+			return "ⅣA"
+		} else if(pan_meta.checked == true){
+			return "ⅢC2"
+		} else if(pl_meta.checked == true){
+			return "ⅢC1" 
+		} else if(pel_wall.checked == true || hydro_kidney.checked == true || noab_kidney.checked == true) {
+			return "ⅢB"
+		} else if(pel_wall.checked == false && 3*va_depth.value - 2*va_length.value > 0){
+			return "ⅢA"
+		} else if(pel_wall.checked == false && para_uterine.checked == true){
+			return "ⅡB"
+		} else if(para_uterine.checked == false && 3*va_depth.value - 2*va_length.value < 0){
+		    if(max_size.value > 4){
+				return "ⅡA2"
+			} else {
+				return "ⅡA1"
+			}
+		} else if(st_depth.value > 0.5 && va_depth.value == 0){
+			if(st_depth.value > 4){
+				return "ⅠB3"
+			} else if(st_depth.value <= 4){
+				return "ⅠB2"
+			} else {
+				return "ⅠB1"
+			}
+		} else if(st_depth.value <= 0.5){
+			if(st_depth.value > 0.3){
+				return "ⅠA2"
+			} else {
+				return "ⅠA1"
+			}
+		} else {
+			return "error"
+		} 
+	}
+	
+	function cxcar_stage(callback){
+		var st_depth = document.getElementById("st_depth");
+		var max_size = document.getElementById("max_size");
+		var va_length = document.getElementById("va_length");
+		var va_depth  = document.getElementById("va_depth");
+		var para_uterine  = document.getElementById("para_uterine");
+		var pel_wall  = document.getElementById("pel_wall");
+		var hydro_kidney  = document.getElementById("hydro_kidney");
+		var noab_kidney  = document.getElementById("noab_kidney");
+		var pl_meta  = document.getElementById("pl_meta");
+		var pan_meta  = document.getElementById("pan_meta");
+		var out_pelvis  = document.getElementById("out_pelvis");
+		var bl_spread  = document.getElementById("bl_spread");
+		var rec_spread  = document.getElementById("rec_spread");
+		
+		var c_stage = callback();
+		
+		document.getElementById("c_stage_result").value = c_stage;
+	}
+	-->
+	</script>
+<title>子宮頚癌進行期分類</title>
+</head>
+
+<body>
+	■子宮頚癌進行期分類<br/><br/>
+	
+	間質浸潤の深さ(cm) : <input type="text" id="st_depth"> <br/>
+	病巣の最大径(cm) : <input type="text" id="max_size"> <br/>
+	膣の長さ(cm) : <input type="text" id="va_length"><br/>
+	腟壁浸潤の長さ(cm) : ※ない場合0を入力<input type="text" id="va_depth"><br/>
+	<label><input type="checkbox" id="para_uterine"> 子宮傍組織浸潤</label> <br/>
+	<label style="text-indent: 2em"><input type="checkbox" id="pel_wall"> 骨盤壁への到達</label> <br/>
+	<label><input type="checkbox" id="out_pelvis"> 小骨盤外への進展</label> <br/>
+	<label><input type="checkbox" id="bl_spread"> 膀胱浸潤</label> <br/>
+	<label><input type="checkbox" id="rec_spread"> 直腸粘膜浸潤</label> <br/>
+	<label><input type="checkbox" id="hydro_kidney"> 水腎症</label> <br/>
+	<label><input type="checkbox" id="noab_kidney"> 無機能腎</label> <br/>
+	<label><input type="checkbox" id="pl_meta"> 骨盤内リンパ節転移</label> <br/>
+	<label><input type="checkbox" id="pan_meta"> 傍大動脈リンパ節転移</label> <br/>
+	<input type="button" value="calculate" onclick="cxcar_stage(c_staging)"> <br/><br/>
+	Stage : <input type="text" id="c_stage_result">
+
+</body>
+</html>
+<!--made by junjun-->
