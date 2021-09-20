@@ -1,0 +1,94 @@
+<!doctype html>
+<!--The staging tool of cervix carcinoma-->
+<!--reference documents : FIGO staging of cancer of the cervix uteri (2018)-->
+<html><head>
+<meta charset="utf-8">
+    <script type="text/javascript">
+	<!--  
+	function c_staging(){
+		
+		if(out_pelvis.checked == true){
+			return "IVB"
+		} else if(bl_spread.checked == true || rec_spread.checked == true){
+			return "IVA"
+		} else if(pan_meta.checked == true){
+			return "IIIC2"
+		} else if(pl_meta.checked == true){
+			return "IIIC1" 
+		} else if(pel_wall.checked == true || hydro_kidney.checked == true || noab_kidney.checked == true) {
+			return "IIIB"
+		} else if(pel_wall.checked == false && 3*va_depth.value - 2*va_length.value > 0){
+			return "IIIA"
+		} else if(pel_wall.checked == false && para_uterine.checked == true){
+			return "IIB"
+		} else if(para_uterine.checked == false && 3*va_depth.value - 2*va_length.value < 0){
+		    if(max_size.value > 4){
+				return "IIA2"
+			} else {
+				return "IIA1"
+			}
+		} else if(st_depth.value > 0.5 && va_depth.value == 0){
+			if(st_depth.value > 4){
+				return "IB3"
+			} else if(st_depth.value <= 4){
+				return "IB2"
+			} else {
+				return "IB1"
+			}
+		} else if(st_depth.value <= 0.5){
+			if(st_depth.value > 0.3){
+				return "IA2"
+			} else {
+				return "IA1"
+			}
+		} else {
+			return "error"
+		} 
+	}
+	
+	function cxcar_stage(callback){
+		var st_depth = document.getElementById("st_depth");
+		var max_size = document.getElementById("max_size");
+		var va_length = document.getElementById("va_length");
+		var va_depth  = document.getElementById("va_depth");
+		var para_uterine  = document.getElementById("para_uterine");
+		var pel_wall  = document.getElementById("pel_wall");
+		var hydro_kidney  = document.getElementById("hydro_kidney");
+		var noab_kidney  = document.getElementById("noab_kidney");
+		var pl_meta  = document.getElementById("pl_meta");
+		var pan_meta  = document.getElementById("pan_meta");
+		var out_pelvis  = document.getElementById("out_pelvis");
+		var bl_spread  = document.getElementById("bl_spread");
+		var rec_spread  = document.getElementById("rec_spread");
+		
+		var c_stage = callback();
+		
+		document.getElementById("c_stage_result").value = c_stage;
+	}
+	-->
+	</script>
+<title>FIGO Staging of cancer of the cervix uteri (2018)</title>
+</head>
+
+<body>
+	FIGO Staging of cancer of the cervix uteri (2018)<br/><br/>
+	
+	Depth of stromal invasion(cm) : <input type="text" id="st_depth"> <br/>
+	Greatest dimension(cm) : <input type="text" id="max_size"> <br/>
+	Length of vagina(cm) : <input type="text" id="va_length"><br/>
+	Depth of vaginal invasion(cm) : ※input 0 when no invasion<input type="text" id="va_depth"><br/>
+	<label><input type="checkbox" id="para_uterine"> Parametrial involvement</label> <br/>
+	<label style="text-indent: 2em"><input type="checkbox" id="pel_wall"> up tp the pelvic wall</label> <br/>
+	<label><input type="checkbox" id="out_pelvis"> Spread to distant organs</label> <br/>
+	<label><input type="checkbox" id="bl_spread"> Involvement with the bladder</label> <br/>
+	<label><input type="checkbox" id="rec_spread"> Involvement with the rectum</label> <br/>
+	<label><input type="checkbox" id="hydro_kidney"> Hydronephrosis</label> <br/>
+	<label><input type="checkbox" id="noab_kidney"> Nonfunctioning kidney</label> <br/>
+	<label><input type="checkbox" id="pl_meta"> Pelvic lymph node metastasis</label> <br/>
+	<label><input type="checkbox" id="pan_meta"> Para-aortic lymph node metastasis</label> <br/>
+	<input type="button" value="calculate" onclick="cxcar_stage(c_staging)"> <br/><br/>
+	Stage : <input type="text" id="c_stage_result">
+
+</body>
+</html>
+<!--made by junjun-->
