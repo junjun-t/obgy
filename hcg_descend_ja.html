@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+    <script type="text/javascript">
+	<!--  	
+	function target_hcg_calc(){
+		var week = document.getElementById("week").value;
+		
+		var target_hcg = 10**((-0.00183662281)*(week**3) + 0.0822094298*(week**2) + (-1.16513158)*week + 7.0)
+		
+		document.getElementById("result").value = target_hcg.toFixed(1);
+	}
+	-->
+	</script>
+<title>hCG下降目標の計算</title>
+</head>
+
+<body>
+	hCG下降目標の計算<br/><br/>
+	
+	奇胎娩出後の週数(週) : <input type="text" id="week"> <br/>
+
+	<input type="button" value="calculate" onclick="target_hcg_calc()"> <br/><br/>
+	目標hCG値 (mIU/mL) : <input type="text" id="result">
+
+</body>
+</html>
